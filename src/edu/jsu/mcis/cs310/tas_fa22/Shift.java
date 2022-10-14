@@ -6,27 +6,23 @@
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.util.logging.Logger;
+import java.util.HashMap;
 
 /**
  *
  * @author Tony
  */
+import java.time.LocalTime;
 public class Shift {
 
    
-    private final String id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
-
-    public Shift(String id, String description, String shiftstart, String shiftstop, String roundinterval, String graceperiod, String dockpenalty, String lunchstart, String lunchstop, String lunchthreshold) {
-        this.id = id;
-        this.description = description;
-        this.shiftstart = shiftstart;
-        this.shiftstop = shiftstop;
-        this.roundinterval = roundinterval;
-        this.graceperiod = graceperiod;
-        this.dockpenalty = dockpenalty;
-        this.lunchstart = lunchstart;
-        this.lunchstop = lunchstop;
-        this.lunchthreshold = lunchthreshold;
+    private final String description;
+    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
+    
+    
+    public Shift(HashMap) {
+    
     }
 
     public String getId() {
