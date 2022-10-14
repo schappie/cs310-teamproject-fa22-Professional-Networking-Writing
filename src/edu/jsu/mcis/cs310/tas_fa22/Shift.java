@@ -26,59 +26,46 @@ public class Shift {
     public Shift(){
         
         HashMap<String, String> Stringmap = new HashMap();
-        HashMap<String, Integer> Stringmap = new HashMap();
+        HashMap<String, Integer> Integermap = new HashMap();
         HashMap<String, LocalTime> LocalTimemap = new HashMap();
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getShiftstart() {
-        return shiftstart;
+    public Integer getId() {
+        return id;
     }
 
-    public String getShiftstop() {
-        return shiftstop;
-    }
-
-    public String getRoundinterval() {
+    public Integer getRoundinterval() {
         return roundinterval;
     }
 
-    public String getGraceperiod() {
+    public Integer getGraceperiod() {
         return graceperiod;
     }
 
-    public String getDockpenalty() {
+    public Integer getDockpenalty() {
         return dockpenalty;
     }
 
-    public String getLunchstart() {
-        return lunchstart;
-    }
-
-    public String getLunchstop() {
-        return lunchstop;
-    }
-
-    public String getLunchthreshold() {
+    public Integer getLunchthreshold() {
         return lunchthreshold;
     }
 
-    @Override
-    public String toString() {
-        return "Shift{" + "id=" + id + ", description=" + description + ", shiftstart=" + shiftstart + ", shiftstop=" + shiftstop + ", roundinterval=" + roundinterval + ", graceperiod=" + graceperiod + ", dockpenalty=" + dockpenalty + ", lunchstart=" + lunchstart + ", lunchstop=" + lunchstop + ", lunchthreshold=" + lunchthreshold + '}';
+    public LocalTime getShiftstart() {
+        return shiftstart;
     }
-    
-    
-    
 
-    
-    
-    
-}
+    public LocalTime getShiftstop() {
+        return shiftstop;
+    }
+
+    public LocalTime getLunchstart() {
+        return lunchstart;
+    }
+
+    public LocalTime getLunchstop() {
+        return lunchstop;
+    }
