@@ -7,6 +7,8 @@ package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.util.logging.Logger;
 import java.util.HashMap;
+import java.util.Scanner;
+
 
 /**
  *
@@ -14,15 +16,18 @@ import java.util.HashMap;
  */
 import java.time.LocalTime;
 public class Shift {
-
+ 
    
     private final String description;
     private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
     
     
-    public Shift(HashMap) {
-    
+    public Shift(){
+        
+        HashMap<String, String> Stringmap = new HashMap();
+        HashMap<String, Integer> Stringmap = new HashMap();
+        HashMap<String, LocalTime> LocalTimemap = new HashMap();
     }
 
     public String getId() {
