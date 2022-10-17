@@ -6,9 +6,7 @@
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.util.HashMap;
-import java.util.Scanner;
 import java.time.LocalTime;
-import java.util.Map;
 
 /**
  *
@@ -26,10 +24,17 @@ public class Shift {
     
     public Shift(){
         
-        Map<String, String> StringMap = new HashMap<String, String>();
-        Map<String, Integer> IntegerMap = new HashMap<String, Integer> ();
-        Map<String, LocalTime> LocalTimeMap = new HashMap<String, LocalTime>();
-        Scanner in = new Scanner(System.in);     
+        HashMap<String, String> StringMap = new HashMap<String, String>();
+        HashMap<String, Integer> IntegerMap = new HashMap<String, Integer>();
+        HashMap<String, LocalTime> LocalTimeMap = new HashMap<String, LocalTime>();
+        
+        
+ 
+        
+        
+        
+        
+          
         
     }
 
