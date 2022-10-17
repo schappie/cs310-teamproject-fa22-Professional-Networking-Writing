@@ -22,19 +22,31 @@ public class Shift {
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
     
     
-    public Shift(){
+    public Shift(HashMap<String, Integer> IntegerMap = new HashMap<>());{
         
-        HashMap<String, String> StringMap = new HashMap<String, String>();
-        HashMap<String, Integer> IntegerMap = new HashMap<String, Integer>();
-        HashMap<String, LocalTime> LocalTimeMap = new HashMap<String, LocalTime>();
-        
-        
- 
+    
+     
         
         
         
+        this.description = description;
+        IntegerMap.put("id", this.id = id);
+        IntegerMap.put("roundinterval", this.roundinterval = roundinterval );
+        IntegerMap.put("graceperiod", this.graceperiod = graceperiod);
+        IntegerMap.put("dockpenalty", this.dockpenalty = dockpenalty);
+        IntegerMap.put("lunchthreshold", this.lunchthreshold = lunchthreshold);
+        this.shiftstart = shiftstart;
+        this.shiftstop = shiftstop;
+        this.lunchstart = lunchstart;
+        this.lunchstop = lunchstop;
         
-          
+    
+              
+        
+        
+       
+     
+        
         
     }
 
