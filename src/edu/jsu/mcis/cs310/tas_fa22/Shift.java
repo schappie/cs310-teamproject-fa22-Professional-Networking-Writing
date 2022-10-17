@@ -5,18 +5,19 @@
  */
 package edu.jsu.mcis.cs310.tas_fa22;
 
-import java.util.logging.Logger;
 import java.util.HashMap;
 import java.util.Scanner;
-
+import java.time.LocalTime;
+import java.util.Map;
 
 /**
  *
  * @author Tony
  */
-import java.time.LocalTime;
+
 public class Shift {
- 
+    
+    
    
     private final String description;
     private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
@@ -25,9 +26,11 @@ public class Shift {
     
     public Shift(){
         
-        HashMap<String, String> Stringmap = new HashMap();
-        HashMap<String, Integer> Integermap = new HashMap();
-        HashMap<String, LocalTime> LocalTimemap = new HashMap();
+        Map<String, String> StringMap = new HashMap<String, String>();
+        Map<String, Integer> IntegerMap = new HashMap<String, Integer> ();
+        Map<String, LocalTime> LocalTimeMap = new HashMap<String, LocalTime>();
+        Scanner in = new Scanner(System.in);     
+        
     }
 
     public String getDescription() {
