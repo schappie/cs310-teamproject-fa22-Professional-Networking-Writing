@@ -8,24 +8,49 @@ package edu.jsu.mcis.cs310.tas_fa22;
 import java.util.logging.Logger;
 import java.util.HashMap;
 
+
 /**
  *
  * @author Tony
  */
 import java.time.LocalTime;
+import java.util.List;
+//import java.util.Scanner;
 public class Shift {
 
    
-    private final String description;
-    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
-    private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
+    private  String description;
+    private Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private  LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
     
     
-    public Shift(HashMap) {
-    
+    public Shift(HashMap<String, String> mapst, HashMap<String, Integer> mapt, HashMap<String, LocalTime> map ) {
+        //HashMap<String, Integer> map = new HashMap<>(); 
+        //HashMap<String, List<String>> mapt = new HashMap<String, List<String>>();
+        //Shift
+        //id = 1;
+        //roundinterval = 2;
+        //graceperiod = 3;
+        //dockpenalty = 4;
+        //lunchthreshold = 5;
+        //this.description = description;
+        mapst.put("description",description);
+        mapt.put("id", id);                           
+        mapt.put("roundinterval", roundinterval);                  
+        mapt.put("graceperiod", this.graceperiod = graceperiod);     //                   
+        mapt.put("dockpenalty", dockpenalty);
+        mapt.put("lunchthreshold", this.lunchthreshold = lunchthreshold); //
+        map.put("shiftstart", shiftstart);
+        map.put("sshiftstop", shiftstop);
+        map.put("lunchstart", lunchstart);
+        this.lunchstop = lunchstop; //
     }
+    
 
-    public String getId() {
+        
+    
+
+    public Integer getId() {
         return id;
     }
 
@@ -33,35 +58,35 @@ public class Shift {
         return description;
     }
 
-    public String getShiftstart() {
+    public LocalTime getShiftstart() {
         return shiftstart;
     }
 
-    public String getShiftstop() {
+    public LocalTime getShiftstop() {
         return shiftstop;
     }
 
-    public String getRoundinterval() {
+    public Integer getRoundinterval() {
         return roundinterval;
     }
 
-    public String getGraceperiod() {
+    public Integer getGraceperiod() {
         return graceperiod;
     }
 
-    public String getDockpenalty() {
+    public Integer getDockpenalty() {
         return dockpenalty;
     }
 
-    public String getLunchstart() {
+    public LocalTime getLunchstart() {
         return lunchstart;
     }
 
-    public String getLunchstop() {
+    public LocalTime getLunchstop() {
         return lunchstop;
     }
 
-    public String getLunchthreshold() {
+    public Integer getLunchthreshold() {
         return lunchthreshold;
     }
 
@@ -71,6 +96,8 @@ public class Shift {
     }
     
     
+    
+
     
 
     
