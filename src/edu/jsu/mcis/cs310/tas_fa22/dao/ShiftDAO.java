@@ -1,7 +1,7 @@
 
 package edu.jsu.mcis.cs310.tas_fa22.dao;
 
-import edu.jsu.mcis.cs310.tas_fa22.Badge;
+import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

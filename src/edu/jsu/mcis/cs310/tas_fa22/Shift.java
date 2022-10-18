@@ -19,7 +19,7 @@ public class Shift {
    
     private final String description;
     private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
-    private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
+    private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             
     
     
     public Shift(HashMap map){
