@@ -22,32 +22,31 @@ public class Shift {
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             //id, description, shiftstart, shiftstop, roundinterval, graceperiod, dockpenalty, lunchstart, lunchstop,lunchthreshold;
     
     
-    public Shift(HashMap<String, Integer> IntegerMap = new HashMap<>());{
+    public Shift(HashMap map){
         
-    
-     
-        
-        
-        
+        this.id = Integer.parseInt((String)map.get("id"));
+        this.description = map.get("description").toString();
+        this.roundinterval = Integer.parseInt((String) map.get("roundinterval"));
+        this.graceperiod = Integer.parseInt((String) map.get("graceperiod"));
+        this.dockpenalty = Integer.parseInt((String)map.get("dockpenalty"));
+        this.lunchthreshold = Integer.parseInt((String)map.get("lunchthreshold"));
+        this.shiftstart = LocalTime.parse((String)map.get("shiftstart"));
+        this.shiftstop = LocalTime.parse((String)map.get("shiftstop"));
+        this.lunchstart = LocalTime.parse((String)map.get("lunchstart"));
+        this.lunchstop = LocalTime.parse((String)map.get("lunchstop"));
+
+        /*
         this.description = description;
-        IntegerMap.put("id", this.id = id);
-        IntegerMap.put("roundinterval", this.roundinterval = roundinterval );
-        IntegerMap.put("graceperiod", this.graceperiod = graceperiod);
-        IntegerMap.put("dockpenalty", this.dockpenalty = dockpenalty);
-        IntegerMap.put("lunchthreshold", this.lunchthreshold = lunchthreshold);
+        map.put("id", this.id = id);
+        map.put("roundinterval", this.roundinterval = roundinterval );
+        map.put("graceperiod", this.graceperiod = graceperiod);
+        map.put("dockpenalty", this.dockpenalty = dockpenalty);
+        map.put("lunchthreshold", this.lunchthreshold = lunchthreshold);
         this.shiftstart = shiftstart;
         this.shiftstop = shiftstop;
         this.lunchstart = lunchstart;
         this.lunchstop = lunchstop;
-        
-    
-              
-        
-        
-       
-     
-        
-        
+        */   
     }
 
     public String getDescription() {
@@ -89,3 +88,4 @@ public class Shift {
     public LocalTime getLunchstop() {
         return lunchstop;
     }
+}
