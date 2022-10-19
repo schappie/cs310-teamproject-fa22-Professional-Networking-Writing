@@ -27,7 +27,9 @@ public class Main {
         
         ShiftDAO shiftDAO = daoFactory.getShiftDAO();
         
-        //Shift s = shiftDAO.find();
+        Shift s = shiftDAO.find("B6902696");
+        
+        System.err.println("Test Badge: " + s.toString());
 
     }
 
