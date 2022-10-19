@@ -49,6 +49,10 @@ in the form of a simple enumeration.)
         this.adjustmenttype = adjustmenttype;
     
     }
+
+    public Punch(String id, String description) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
     public int getId() {
@@ -66,6 +70,10 @@ in the form of a simple enumeration.)
 
         s.append('#').append(id).append(' ');
         s.append('(').append(terminalid).append(')');
+        s.append('#').append(originaltimestamp).append(' ');
+        s.append('(').append(badge).append(')');
+        s.append('#').append(punchtype).append(' ');
+        s.append('(').append(adjustmenttype).append(')');
        
 
         return s.toString();
