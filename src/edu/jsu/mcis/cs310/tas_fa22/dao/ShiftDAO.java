@@ -1,12 +1,10 @@
 
 package edu.jsu.mcis.cs310.tas_fa22.dao;
 
-<<<<<<< HEAD
+
 import edu.jsu.mcis.cs310.tas_fa22.Shift;
 import edu.jsu.mcis.cs310.tas_fa22.Badge;
-=======
 import edu.jsu.mcis.cs310.tas_fa22.*;
->>>>>>> b0d67c09681652aaecca15808dc48df1e24aa3d8
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,7 +49,7 @@ public class ShiftDAO {
                         String roundInterval = rs.getString("roundInterval");
                         String gracePeriod = rs.getString("gracePeriod");
                         String 
-                        Shift = new Shift(id, description);
+                        Shift = new Shift(description, id);
 
                     }
 

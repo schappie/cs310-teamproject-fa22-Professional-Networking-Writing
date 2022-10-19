@@ -16,6 +16,7 @@ public class Main {
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         
+        
         // find badge
 
         Badge b = badgeDAO.find("31A25435");
@@ -23,6 +24,10 @@ public class Main {
         // output should be "Test Badge: #31A25435 (Munday, Paul J)"
         
         System.err.println("Test Badge: " + b.toString());
+        
+        ShiftDAO shiftDAO = daoFactory.getShiftDAO();
+        
+        //Shift s = shiftDAO.find();
 
     }
 
