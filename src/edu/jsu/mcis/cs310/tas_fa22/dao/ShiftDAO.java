@@ -106,7 +106,7 @@ public Shift find(Badge badge) {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, badge.getId());
+                ps.setInt(1, Integer.parseInt(badge.getId()));
 
                 boolean hasresults = ps.execute();
 
