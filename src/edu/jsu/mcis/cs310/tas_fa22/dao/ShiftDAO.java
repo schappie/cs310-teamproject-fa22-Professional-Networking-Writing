@@ -2,9 +2,12 @@
 package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 
+
 import edu.jsu.mcis.cs310.tas_fa22.Shift;
 import edu.jsu.mcis.cs310.tas_fa22.Badge;
 import edu.jsu.mcis.cs310.tas_fa22.*;
+
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +16,15 @@ import java.util.HashMap;
 
 
 public class ShiftDAO {
-    private static final String QUERY_FIND = "INSERT * FROM shift WHERE id = ?";
+    private static final String QUERY_FIND = "SELECT * FROM shift WHERE id = ?";
     private final DAOFactory daoFactory;
-    private HashMap<String, String> map = new HashMap<>();
+    private final HashMap<String, String> map = new HashMap<>();
     
     public ShiftDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
             
-    public Shift find(String id) {
+    public Shift find(int id) {
 
         Shift shift = null;
 
@@ -35,7 +38,7 @@ public class ShiftDAO {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, id);
+                ps.setInt(1, id);
 
                 boolean hasresults = ps.execute();
 
@@ -46,13 +49,8 @@ public class ShiftDAO {
                     while (rs.next()) {
 
 
-                        String description = rs.getString("description");
-                        String shiftstart = rs.getString("shiftstart");
-                        String shiftstop = rs.getString("shiftstop");
-                        String roundInterval = rs.getString("roundInterval");
-                        String gracePeriod = rs.getString("gracePeriod");
-                        String 
-                        Shift = new Shift(description, id);
+                         
+                        
 
                         map.put("id",rs.getString("id"));
                         map.put("description", rs.getString("description"));
@@ -99,4 +97,10 @@ public class ShiftDAO {
         return shift;
 
     }
+
+    
+
+    
+
+    
 }

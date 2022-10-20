@@ -36,6 +36,7 @@ public final class DAOFactory {
         return new BadgeDAO(this);
     }
     
+
     public ShiftDAO getShiftDAO() {
         return new ShiftDAO(this);
     }
@@ -43,5 +44,12 @@ public final class DAOFactory {
     //public PunchDAO getPunchDAO() {
        // return new PunchDAO(this);
     //}
+
+
+    
+    public PunchDAO getPunchDAO(){
+        return new PunchDAO(this);
+    }
+
 
 }

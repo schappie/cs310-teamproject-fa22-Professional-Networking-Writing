@@ -49,9 +49,7 @@ public class Shift {
         */   
     }
 
-    public Shift(Integer id, String description) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     public String getDescription() {
         return description;
@@ -98,13 +96,19 @@ public class Shift {
 
         StringBuilder s = new StringBuilder();
 
-        s.append(' ').append(id).append(' ');
+        s.append("").append(description);
         s.append(' ').append(shiftstart).append(' ');
+        s.append('-');
         s.append(' ').append(shiftstop).append(' ');
-        s.append('(').append(roundinterval).append(')');
+        s.append(';');
+        s.append(" Lunch: ");
         s.append(' ').append(lunchstart).append(' ');
+        s.append('-');
         s.append(' ').append(lunchstop).append(' ');
-        s.append('(').append(lunchthreshold).append(')');
+        s.append('(').append(lunchthreshold).append(" minutes").append(')');
+        
+        
+        
 
         return s.toString();
 
