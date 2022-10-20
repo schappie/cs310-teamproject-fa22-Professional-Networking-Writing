@@ -9,12 +9,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 
 public class ShiftDAO {
     private static final String QUERY_FIND = "INSERT * FROM shift WHERE id = ?";
     private final DAOFactory daoFactory;
-
+    private HashMap<String, String> map = new HashMap<>();
+    
     public ShiftDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
@@ -43,6 +45,7 @@ public class ShiftDAO {
 
                     while (rs.next()) {
 
+
                         String description = rs.getString("description");
                         String shiftstart = rs.getString("shiftstart");
                         String shiftstop = rs.getString("shiftstop");
@@ -51,7 +54,20 @@ public class ShiftDAO {
                         String 
                         Shift = new Shift(description, id);
 
+                        map.put("id",rs.getString("id"));
+                        map.put("description", rs.getString("description"));
+                        map.put("roundinterval", rs.getString("roundinterval"));
+                        map.put("graceperiod", rs.getString("graceperiod"));
+                        map.put("dockpenalty", rs.getString("dockpenalty"));
+                        map.put("shiftstart", rs.getString("shiftstart"));
+                        map.put("shiftstop", rs.getString("shiftstop"));
+                        map.put("lunchstart", rs.getString("lunchstart"));
+                        map.put("lunchstop", rs.getString("lunchstop"));
+                        map.put("lunchthreshold", rs.getString("lunchthreshold"));
+
+
                     }
+                    shift = new Shift(map);
 
                 }
 
