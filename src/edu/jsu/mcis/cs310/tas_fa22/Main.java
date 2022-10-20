@@ -33,7 +33,7 @@ public class Main {
 
         
         
-        Shift s1 = shiftDAO.find("B6902696");
+        //Shift s = shiftDAO.find("B6902696");
         
         System.err.println("Test Badge: " + s.toString());
 
