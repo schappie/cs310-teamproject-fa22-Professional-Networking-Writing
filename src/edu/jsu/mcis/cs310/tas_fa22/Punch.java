@@ -50,9 +50,11 @@ in the form of a simple enumeration.)
     
     }
 
-    public Punch(String id, String description) {
+    public Punch(int id, Integer terminalid) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+  
     
 
     public int getId() {
