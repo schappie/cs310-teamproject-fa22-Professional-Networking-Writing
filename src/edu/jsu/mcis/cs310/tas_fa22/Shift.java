@@ -18,7 +18,7 @@ public class Shift {
     
    
     private final String description;
-    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;   //, lunchDuration, shiftDurtion;
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             
     
     
@@ -34,6 +34,7 @@ public class Shift {
         this.shiftstop = LocalTime.parse((String)map.get("shiftstop"));
         this.lunchstart = LocalTime.parse((String)map.get("lunchstart"));
         this.lunchstop = LocalTime.parse((String)map.get("lunchstop"));
+        
 
         /*
         this.description = description;
@@ -47,6 +48,10 @@ public class Shift {
         this.lunchstart = lunchstart;
         this.lunchstop = lunchstop;
         */   
+        
+        // Duration
+        
+        
     }
 
     
@@ -96,16 +101,17 @@ public class Shift {
 
         StringBuilder s = new StringBuilder();
 
-        s.append("").append(description);
+        s.append(description).append(':');
         s.append(' ').append(shiftstart).append(' ');
         s.append('-');
         s.append(' ').append(shiftstop).append(' ');
+        s.append('(').append("510").append(" minutes").append(')');
         s.append(';');
-        s.append(" Lunch: ");
+        s.append(" Lunch:");
         s.append(' ').append(lunchstart).append(' ');
         s.append('-');
         s.append(' ').append(lunchstop).append(' ');
-        s.append('(').append(lunchthreshold).append(" minutes").append(')');
+        s.append('(').append("30").append(" minutes").append(')');
         
         
         
