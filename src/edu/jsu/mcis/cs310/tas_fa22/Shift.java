@@ -101,16 +101,17 @@ public class Shift {
 
         StringBuilder s = new StringBuilder();
 
-        s.append("").append(description);
+        s.append(description).append(':');
         s.append(' ').append(shiftstart).append(' ');
         s.append('-');
         s.append(' ').append(shiftstop).append(' ');
+        s.append('(').append("510").append(" minutes").append(')');
         s.append(';');
-        s.append(" Lunch: ");
+        s.append(" Lunch:");
         s.append(' ').append(lunchstart).append(' ');
         s.append('-');
         s.append(' ').append(lunchstop).append(' ');
-        s.append('(').append(lunchthreshold).append(" minutes").append(')');
+        s.append('(').append("30").append(" minutes").append(')');
         
         
 
