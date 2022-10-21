@@ -64,7 +64,8 @@ in the form of a simple enumeration.)
     public int getTerminalid() {
         return terminalid;
     }
-
+    
+    
     @Override
     public String toString() {
         
