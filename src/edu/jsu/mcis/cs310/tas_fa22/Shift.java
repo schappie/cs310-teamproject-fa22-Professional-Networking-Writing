@@ -7,6 +7,7 @@ package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.util.HashMap;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Shift {
     
    
     private final String description;
-    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;   //, lunchDuration, shiftDurtion;
+    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold, lunchDuration, shiftDuration;
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             
     
     
@@ -35,7 +36,8 @@ public class Shift {
         this.lunchstart = LocalTime.parse((String)map.get("lunchstart"));
         this.lunchstop = LocalTime.parse((String)map.get("lunchstop"));
         
-
+        this.lunchDuration = (int)(ChronoUnit.MINUTES.between(lunchstart, lunchstop));
+        this.shiftDuration = (int)(ChronoUnit.MINUTES.between(shiftstart,shiftstop));
         /*
         this.description = description;
         map.put("id", this.id = id);
