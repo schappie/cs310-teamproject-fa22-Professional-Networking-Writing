@@ -21,39 +21,41 @@ in the form of a simple enumeration.)
     
     */
     
-    private int id;
-    private final int terminalid;
+    private final Integer id;
+    private final Integer terminalid;
     private final Badge badge;
-    private LocalDateTime originaltimestamp;
+    private final LocalDateTime originaltimestamp;
+    private final LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
-    private final PunchAdjustmentType adjustmenttype;
+    private PunchAdjustmentType adjustmenttype;
     
     
     
     
     
-    Punch(int terminalid, Badge badge, EventType punchtype, PunchAdjustmentType adjustmenttype) {
+    public Punch(int terminalid, Badge badge, EventType punchtype, PunchAdjustmentType adjustmenttype) {
         this.terminalid = terminalid;
         this.badge = badge;
         this.punchtype = punchtype;
         this.adjustmenttype = adjustmenttype;
+        this.adjustedtimestamp = null;
+        this.id = null;
+        this.originaltimestamp = LocalDateTime.now();
+        
     }
             
             
-    Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype, PunchAdjustmentType adjustmenttype) {
+    public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype, PunchAdjustmentType adjustmenttype) {
         this.id = id;
         this.terminalid = terminalid;  
         this.originaltimestamp = originaltimestamp;
         this.badge = badge;
         this.punchtype = punchtype;
         this.adjustmenttype = adjustmenttype;
+        this.adjustedtimestamp = null;
+    }
+
     
-    }
-
-    public Punch(int id, Integer terminalid) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
   
     
 
@@ -79,7 +81,8 @@ in the form of a simple enumeration.)
        
 
         return s.toString();
-        
+        // Date formater to time look at examples in test
+        // Original and Adjusted
 
 //return "Punch{" + "id=" + id + ", terminalid=" + terminalid + '}';
     }
