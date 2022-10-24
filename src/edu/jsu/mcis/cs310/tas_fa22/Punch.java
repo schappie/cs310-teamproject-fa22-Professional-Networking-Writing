@@ -64,6 +64,23 @@ in the form of a simple enumeration.)
     public int getTerminalid() {
         return terminalid;
     }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public LocalDateTime getOriginaltimestamp() {
+        return originaltimestamp;
+    }
+
+    public EventType getPunchtype() {
+        return punchtype;
+    }
+
+    public PunchAdjustmentType getAdjustmenttype() {
+        return adjustmenttype;
+    }
+    
     
     
     @Override
