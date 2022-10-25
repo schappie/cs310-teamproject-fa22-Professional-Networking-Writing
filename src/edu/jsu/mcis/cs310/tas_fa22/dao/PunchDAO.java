@@ -2,10 +2,11 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public class PunchDAO {
 
-    private static final String QUERY_FIND = "SELECT * FROM punch WHERE id = ?";
+    private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
 
     private final DAOFactory daoFactory;
 
@@ -29,7 +30,7 @@ public class PunchDAO {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setInt(1, id);
+                ps.setString(1, Integer.toString(id));
 
                 boolean hasresults = ps.execute();
 
@@ -38,10 +39,14 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-
-                        Integer terminalid = rs.getInt("terminalid");
-                        punch = new Punch(id, terminalid);
-
+                        int terminalid = rs.getInt("terminalid");
+                        String badgeid = rs.getString("badgeid");
+                        BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
+                        Badge badge = badgeDAO.find(badgeid);
+                        EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
+                        LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
+                        
+                        punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
                     }
 
                 }
