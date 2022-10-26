@@ -16,6 +16,7 @@ public class Main {
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         ShiftDAO shiftDAO = daoFactory.getShiftDAO();
+        DepartmentDAO departmentDAO = daoFactory.getDepartmentDAO();
         
         
         
@@ -24,6 +25,7 @@ public class Main {
 
         Badge b = badgeDAO.find("31A25435");
         Shift s = shiftDAO.find(3);
+        Department d = departmentDAO.find()
         
         
         

@@ -50,6 +50,10 @@ public final class DAOFactory {
     public PunchDAO getPunchDAO(){
         return new PunchDAO(this);
     }
+    
+    public DepartmentDAO getDepartmentDAO(){
+        return new DepartmentDAO(this);
+    }
 
 
 }
