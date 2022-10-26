@@ -7,6 +7,7 @@ package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.util.HashMap;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Shift {
     
    
     private final String description;
-    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold;
+    private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold, lunchDuration, shiftDuration;
     private final LocalTime shiftstart, shiftstop, lunchstart, lunchstop;             
     
     
@@ -34,7 +35,9 @@ public class Shift {
         this.shiftstop = LocalTime.parse((String)map.get("shiftstop"));
         this.lunchstart = LocalTime.parse((String)map.get("lunchstart"));
         this.lunchstop = LocalTime.parse((String)map.get("lunchstop"));
-
+        
+        this.lunchDuration = (int)(ChronoUnit.MINUTES.between(lunchstart, lunchstop));
+        this.shiftDuration = (int)(ChronoUnit.MINUTES.between(shiftstart,shiftstop));
         /*
         this.description = description;
         map.put("id", this.id = id);
@@ -47,11 +50,13 @@ public class Shift {
         this.lunchstart = lunchstart;
         this.lunchstop = lunchstop;
         */   
+        
+        // Duration
+        
+        
     }
 
-    public Shift(Integer id, String description) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    
 
     public String getDescription() {
         return description;
@@ -98,13 +103,19 @@ public class Shift {
 
         StringBuilder s = new StringBuilder();
 
-        s.append(' ').append(id).append(' ');
+        s.append(description).append(':');
         s.append(' ').append(shiftstart).append(' ');
+        s.append('-');
         s.append(' ').append(shiftstop).append(' ');
-        s.append('(').append(roundinterval).append(')');
+        s.append('(').append("510").append(" minutes").append(')');
+        s.append(';');
+        s.append(" Lunch:");
         s.append(' ').append(lunchstart).append(' ');
+        s.append('-');
         s.append(' ').append(lunchstop).append(' ');
-        s.append('(').append(lunchthreshold).append(')');
+        s.append('(').append("30").append(" minutes").append(')');
+        
+        
 
         return s.toString();
 
