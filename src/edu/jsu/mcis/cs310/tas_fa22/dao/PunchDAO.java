@@ -74,7 +74,7 @@ public class PunchDAO {
         return punch;
 
     }
-    
+     /*
     public Punch printOriginal(int id) {
 
         Punch punch = null;
@@ -103,6 +103,7 @@ public class PunchDAO {
                         punch = new Punch(id, punchtype);
 
                     }
+
 
                 }
 
@@ -133,5 +134,5 @@ public class PunchDAO {
         }
         return punch;
     }
-
+*/
 }
