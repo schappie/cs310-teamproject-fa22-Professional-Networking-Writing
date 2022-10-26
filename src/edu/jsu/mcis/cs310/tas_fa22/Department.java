@@ -30,7 +30,7 @@ public class Department {
 
         s.append('#').append(id).append(' ');
         s.append('(').append(description).append(')');
-        s.append(",").append("Terminal ID: ").append(terminalid);
+        s.append(",").append(" Terminal ID: ").append(terminalid);
         
         
 
