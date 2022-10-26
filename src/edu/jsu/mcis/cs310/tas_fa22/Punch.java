@@ -2,6 +2,7 @@
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Punch {
     
@@ -25,7 +26,6 @@ in the form of a simple enumeration.)
     private final Integer terminalid;
     private final Badge badge;
     private final LocalDateTime originaltimestamp;
-    private final LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype;
     
@@ -33,32 +33,28 @@ in the form of a simple enumeration.)
     
     
     
-    public Punch(int terminalid, Badge badge, EventType punchtype, PunchAdjustmentType adjustmenttype) {
+    public Punch(int terminalid, Badge badge, EventType punchtype) {
+        this.id = null;
         this.terminalid = terminalid;
         this.badge = badge;
         this.punchtype = punchtype;
-        this.adjustmenttype = adjustmenttype;
-        this.adjustedtimestamp = null;
-        this.id = null;
-        this.originaltimestamp = LocalDateTime.now();
-        
+        this.adjustmenttype = null;
+        this.originaltimestamp = null;
     }
             
             
-    public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype, PunchAdjustmentType adjustmenttype) {
+    public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
         this.id = id;
         this.terminalid = terminalid;  
         this.originaltimestamp = originaltimestamp;
         this.badge = badge;
         this.punchtype = punchtype;
-        this.adjustmenttype = adjustmenttype;
-        this.adjustedtimestamp = null;
-    }
+    }   
+      
 
     
   
     
-
     public int getId() {
         return id;
     }
@@ -67,42 +63,27 @@ in the form of a simple enumeration.)
         return terminalid;
     }
 
-    public Badge getBadge() {
-        return badge;
-    }
 
-    public LocalDateTime getOriginaltimestamp() {
-        return originaltimestamp;
-    }
-
-    public EventType getPunchtype() {
-        return punchtype;
-    }
-
-    public PunchAdjustmentType getAdjustmenttype() {
-        return adjustmenttype;
-    }
     
     
-    
-    @Override
-    public String toString() {
         
-        StringBuilder s = new StringBuilder();
 
-        s.append('#').append(id).append(' ');
-        s.append('(').append(terminalid).append(')');
-        s.append('#').append(originaltimestamp).append(' ');
-        s.append('(').append(badge).append(')');
-        s.append('#').append(punchtype).append(' ');
-        s.append('(').append(adjustmenttype).append(')');
+    public String printOriginal() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
+        StringBuilder s = new StringBuilder();
+        
+        s.append('#');
+        s.append(badge.getId());
+        s.append(" ");
+        s.append(punchtype);
+        s.append(": ");
+        s.append(originaltimestamp.format(format).toUpperCase());
        
 
         return s.toString();
-        // Date formater to time look at examples in test
-        // Original and Adjusted
+        
 
-//return "Punch{" + "id=" + id + ", terminalid=" + terminalid + '}';
+
     }
     
     
