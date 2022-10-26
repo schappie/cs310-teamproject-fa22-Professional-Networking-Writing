@@ -9,15 +9,15 @@ public class DepartmentDAO {
 
     private final DAOFactory daoFactory;
 
-    BadgeDAO(DAOFactory daoFactory) {
+    DepartmentDAO(DAOFactory daoFactory) {
 
         this.daoFactory = daoFactory;
 
     }
 
-    public Department find(int id) {
+    public Department find(Integer id) {
 
-        Badge badge = null;
+        Department department = null;
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -41,7 +41,7 @@ public class DepartmentDAO {
 
                         String description = rs.getString("description");
                         Integer terminalid = rs.getInt("terminalid");
-                        department = new Department(id, description);
+                        department = new Department(id, description,terminalid);
 
                     }
 

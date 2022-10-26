@@ -25,21 +25,23 @@ public class Main {
 
         Badge b = badgeDAO.find("31A25435");
         Shift s = shiftDAO.find(3);
-        Department d = departmentDAO.find()
+        Department d = departmentDAO.find(1);
         
         
         
         // output should be "Test Badge: #31A25435 (Munday, Paul J)"
         
-        System.err.println("Test Badge: " + b.toString());
+        
 
         
         
         //Shift s = shiftDAO.find("B6902696");
         
-        System.err.println("Test Badge: " + s.toString());
+        System.err.println("Test Badge: " + b.toString());
 
         System.err.println("Test Shift: " + s.toString());
+        
+        System.err.println("Test Department: " + d.toString());
         
 
 
