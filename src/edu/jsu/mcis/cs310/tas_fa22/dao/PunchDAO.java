@@ -79,5 +79,10 @@ public class PunchDAO {
         return punch;
 
     }
+    
+    public Integer punchCreate(){
+        return null;
+    }
+
      
 }
