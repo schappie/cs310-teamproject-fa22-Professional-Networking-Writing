@@ -13,12 +13,13 @@ import java.time.LocalDateTime;
  */
 public class Employee {
     
-    private final Integer id,firstname,middlename,lastname;
+    private final Integer id;
+    private final String firstname,middlename,lastname;
      private final LocalDateTime  active;
     private final Badge badge;
     private final Shift shift;
 
-    public Employee(Integer id, Integer firstname, Integer middlename, Integer lastname, LocalDateTime active, Badge badge, Shift shift) {
+    public Employee(Integer id, String firstname, String middlename, String lastname, LocalDateTime active, Badge badge, Shift shift) {
         this.id = id;
         this.firstname = firstname;
         this.middlename = middlename;
@@ -32,15 +33,15 @@ public class Employee {
         return id;
     }
 
-    public Integer getFirstname() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public Integer getMiddlename() {
+    public String getMiddlename() {
         return middlename;
     }
 
-    public Integer getLastname() {
+    public String getLastname() {
         return lastname;
     }
 
