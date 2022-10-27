@@ -63,6 +63,20 @@ in the form of a simple enumeration.)
         return terminalid;
     }
 
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public LocalDateTime getOriginaltimestamp() {
+        return originaltimestamp;
+    }
+
+    public EventType getPunchtype() {
+        return punchtype;
+    }
+    
+    
+
 
     
     
