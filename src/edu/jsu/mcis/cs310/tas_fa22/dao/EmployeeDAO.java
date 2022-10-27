@@ -57,15 +57,13 @@ public class EmployeeDAO {
 
                     while (rs.next()) {
                         String badgeid = rs.getString("badgeid");
-                        BadgeDAO BadgeDAO = daoFactory.getBadgeDAO();
-                        Badge badge = BadgeDAO.find(badgeid);
                         String firstname = rs.getString("firstname");
                         String middlename = rs.getString("middlename");
                         String lastname = rs.getString("lastname");
                         int employeetypeid = rs.getInt("employeetypeid");
                         EmployeeType employeetype = EmployeeType.values()[rs.getInt("eventtypeid")];
                         int departmentid = rs.getInt("departmentid");
-                        DepartmentDAO departmentdao = daoFactory.getDepartmentDAO();
+                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
                         Department department = DepartmentDAO.find(departmentid).getDescription();
                         int shiftid = rs.getInt("shiftid");
                         ShiftDAO ShiftDAO = daoFactory.getShiftDAO();
@@ -73,7 +71,7 @@ public class EmployeeDAO {
                         LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
                         LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        Employee = new employee(id, firstname, middlename, lastname, active, badge, shift);
+                        Employee = new employee(id, firstname, middlename, lastname, active, badgeid, shift, employeetype);
                     }
 
                 }
@@ -144,7 +142,7 @@ public class EmployeeDAO {
                         LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
                         LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        Employee = new employee(id, firstname, middlename, lastname, active, badge, shift);
+                        Employee = new employee(id, firstname, middlename, lastname, active, badge.getId(), shift);
 
                     }
 
