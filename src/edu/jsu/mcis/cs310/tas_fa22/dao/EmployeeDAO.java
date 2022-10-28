@@ -12,6 +12,7 @@ import edu.jsu.mcis.cs310.tas_fa22.EmployeeType;
 import edu.jsu.mcis.cs310.tas_fa22.EventType;
 import edu.jsu.mcis.cs310.tas_fa22.Punch;
 import edu.jsu.mcis.cs310.tas_fa22.Shift;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,14 +65,14 @@ public class EmployeeDAO {
                         EmployeeType employeetype = EmployeeType.values()[rs.getInt("eventtypeid")];
                         int departmentid = rs.getInt("departmentid");
                         DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
-                        Department department = DepartmentDAO.find(departmentid).getDescription();
+                        Department department = DepartmentDAO.find(departmentid);
                         int shiftid = rs.getInt("shiftid");
                         ShiftDAO ShiftDAO = daoFactory.getShiftDAO();
                         Shift shift = ShiftDAO.find(shiftid);
                         LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
                         LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        Employee = new employee(id, firstname, middlename, lastname, active, badgeid, shift, employeetype);
+                        employee = new Employee(id, firstname, middlename, lastname, active, badgeid, department, shift, employeetype);
                     }
 
                 }
@@ -118,7 +119,7 @@ public class EmployeeDAO {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, Integer.toString(id));
+                ps.setString(1, (badge.getId()));
 
                 boolean hasresults = ps.execute();
 
@@ -134,15 +135,15 @@ public class EmployeeDAO {
                         int employeetypeid = rs.getInt("employeetypeid");
                         EmployeeType employeetype = EmployeeType.values()[rs.getInt("eventtypeid")];
                         int departmentid = rs.getInt("departmentid");
-                        DepartmentDAO departmentdao = daoFactory.getDepartmentDAO();
-                        Department department = DepartmentDAO.find(departmentid).getDescription();
+                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
+                        Department department = DepartmentDAO.find(departmentid);
                         int shiftid = rs.getInt("shiftid");
                         ShiftDAO ShiftDAO = daoFactory.getShiftDAO();
                         Shift shift = ShiftDAO.find(shiftid);
                         LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
                         LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        Employee = new employee(id, firstname, middlename, lastname, active, badge.getId(), shift);
+                        employee = new Employee(id, firstname, middlename, lastname, active, badge.getId(), department, shift, employeetype);
 
                     }
 
