@@ -77,10 +77,8 @@ in the form of a simple enumeration.)
     
     
 
-
     
-    
-        
+       
 
     public String printOriginal() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
@@ -119,7 +117,8 @@ in the form of a simple enumeration.)
     The parameter values can be stored in the map as strings and passed as a single argument to the Shift constructor; 
     the constructor can then retrieve these values from the map and convert them to their native types.)
     */
-    
+
+
 
 
     

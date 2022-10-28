@@ -80,6 +80,7 @@ public class PunchDAO {
 
     }
     
+
     public Punch create(int id ) {
         Punch punch = null;
 
@@ -152,5 +153,11 @@ public class PunchDAO {
     }
         
     
+
+    public Integer punchCreate(){
+        return null;
+    }
+
+
      
 }

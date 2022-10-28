@@ -107,13 +107,13 @@ public class Shift {
         s.append(' ').append(shiftstart).append(' ');
         s.append('-');
         s.append(' ').append(shiftstop).append(' ');
-        s.append('(').append("510").append(" minutes").append(')');
+        s.append('(').append(shiftDuration).append(" minutes").append(')');
         s.append(';');
         s.append(" Lunch:");
         s.append(' ').append(lunchstart).append(' ');
         s.append('-');
         s.append(' ').append(lunchstop).append(' ');
-        s.append('(').append("30").append(" minutes").append(')');
+        s.append('(').append(lunchDuration).append(" minutes").append(')');
         
         
         
