@@ -6,6 +6,7 @@
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -73,7 +74,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "ID #" + id + ": " + lastname + ", " + firstname + " " + middlename + " (#" + badge.getId() + "), " + "Type: " + employeetype + ", Department: " + department + ", Active: " + active;
+        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return "ID #" + id + ": " + lastname + ", " + firstname + " " + middlename + " (#" + badge.getId() + "), " + "Type: " + employeetype + ", Department: " + department.getDescription() + ", Active: " + active.format(dateformat);
     }
     
     
