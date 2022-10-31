@@ -17,7 +17,7 @@ public class Main {
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         ShiftDAO shiftDAO = daoFactory.getShiftDAO();
         DepartmentDAO departmentDAO = daoFactory.getDepartmentDAO();
-        
+        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
         
         
         
@@ -26,6 +26,7 @@ public class Main {
         Badge b = badgeDAO.find("31A25435");
         Shift s = shiftDAO.find(3);
         Department d = departmentDAO.find(1);
+        Employee e = employeeDAO.find(1);
         
         
         
@@ -43,6 +44,7 @@ public class Main {
         
         System.err.println("Test Department: " + d.toString());
         
+        System.err.println("Test Employee: " + e.toString());
 
 
     }
