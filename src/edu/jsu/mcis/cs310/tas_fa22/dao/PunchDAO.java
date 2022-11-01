@@ -81,8 +81,8 @@ public class PunchDAO {
     }
     
 
-    public Punch create(int id ) {
-        Punch punch = null;
+    public Punch create(int id) {
+        Punch create = null;
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -111,14 +111,35 @@ public class PunchDAO {
                         EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
                         LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
                         
+                        //punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
                         
-                        punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
+                        
+                        //create = new Punch(id,terminalid);
+                        create = new Punch(terminalid, badge, punchtype);
+                        
+                            //terminalid = punch.getTerminalid();
+                            //badge = punch.getBadge();
+                            //punchtype = punch.getPunchtype();
+                        
+                        
+
+
+
+
+
+
+                        
+                        
+                        
+                        //punch = new Punch(terminalid,badge, punchtype);
                              
-                            id = punch.getId();
-                            terminalid = punch.getTerminalid();
-                            badge = punch.getBadge();
-                            originaltimestamp = punch.getOriginaltimestamp();
-                            punchtype = punch.getPunchtype();
+                            //id = punch.getId();
+                            //terminalid = punch.getTerminalid();
+                            //badge = punch.getBadge();
+                            //originaltimestamp = punch.getOriginaltimestamp();
+                            //punchtype = punch.getPunchtype();
+                            
+                            
                     }
 
                 }
@@ -148,15 +169,15 @@ public class PunchDAO {
 
         }
 
-        return punch;
+        return create;
 
     }
         
     
 
-    public Integer punchCreate(){
-        return null;
-    }
+    //public Integer punchCreate(){
+        //return null;
+    //}
 
 
      
