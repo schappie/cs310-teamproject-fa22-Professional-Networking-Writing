@@ -18,13 +18,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Tony
  */
 public class EmployeeDAO {
-   private static final String QUERY_FIND = "SELECT * FROM department WHERE id = ?";
+   private static final String QUERY_FIND_ID = "SELECT * FROM employee WHERE id = ?";
+   private static final String QUERY_FIND_BADGE = "SELECT * FROM employee WHERE badgeid = ?";
 
     private final DAOFactory daoFactory;
 
@@ -47,7 +49,7 @@ public class EmployeeDAO {
 
             if (conn.isValid(0)) {
 
-                ps = conn.prepareStatement(QUERY_FIND);
+                ps = conn.prepareStatement(QUERY_FIND_ID);
                 ps.setString(1, Integer.toString(id));
 
                 boolean hasresults = ps.execute();
@@ -55,24 +57,31 @@ public class EmployeeDAO {
                 if (hasresults) {
 
                     rs = ps.getResultSet();
-
+                    
                     while (rs.next()) {
-                        String badgeid = rs.getString("badgeid");
+                        
                         String firstname = rs.getString("firstname");
                         String middlename = rs.getString("middlename");
                         String lastname = rs.getString("lastname");
-                        int employeetypeid = rs.getInt("employeetypeid");
-                        EmployeeType employeetype = EmployeeType.values()[rs.getInt("eventtypeid")];
-                        int departmentid = rs.getInt("departmentid");
-                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
-                        Department department = DepartmentDAO.find(departmentid);
-                        int shiftid = rs.getInt("shiftid");
-                        ShiftDAO ShiftDAO = daoFactory.getShiftDAO();
-                        Shift shift = ShiftDAO.find(shiftid);
-                        LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
-                        LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        employee = new Employee(id, firstname, middlename, lastname, active, badgeid, department, shift, employeetype);
+                        EmployeeType employeetype = EmployeeType.values()[rs.getInt("employeetypeid")];
+                        
+                      
+                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
+                        Department department = DepartmentDAO.find(rs.getInt("departmentid"));
+                        
+                        BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
+                        Badge badge = badgeDAO.find(rs.getString("badgeid"));
+                        
+                    
+                        ShiftDAO ShiftDAO = new ShiftDAO(daoFactory);
+                        Shift shift = ShiftDAO.find(rs.getInt("shiftid"));
+                        
+                        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        LocalDateTime active = LocalDateTime.parse(rs.getString("active"), dateformat);
+                        
+                        
+                        employee = new Employee(id, firstname, middlename, lastname, active, badge, department, shift, employeetype);
                     }
 
                 }
@@ -118,7 +127,7 @@ public class EmployeeDAO {
 
             if (conn.isValid(0)) {
 
-                ps = conn.prepareStatement(QUERY_FIND);
+                ps = conn.prepareStatement(QUERY_FIND_BADGE);
                 ps.setString(1, (badge.getId()));
 
                 boolean hasresults = ps.execute();
@@ -128,22 +137,31 @@ public class EmployeeDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-                         int id = rs.getInt("id");
+                        
+                        int id = rs.getInt("id");
                         String firstname = rs.getString("firstname");
                         String middlename = rs.getString("middlename");
                         String lastname = rs.getString("lastname");
-                        int employeetypeid = rs.getInt("employeetypeid");
-                        EmployeeType employeetype = EmployeeType.values()[rs.getInt("eventtypeid")];
-                        int departmentid = rs.getInt("departmentid");
-                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
-                        Department department = DepartmentDAO.find(departmentid);
-                        int shiftid = rs.getInt("shiftid");
-                        ShiftDAO ShiftDAO = daoFactory.getShiftDAO();
-                        Shift shift = ShiftDAO.find(shiftid);
-                        LocalDateTime active = rs.getTimestamp("active").toLocalDateTime();
-                        LocalDateTime inactive = rs.getTimestamp("inactive").toLocalDateTime();
                         
-                        employee = new Employee(id, firstname, middlename, lastname, active, badge.getId(), department, shift, employeetype);
+                        EmployeeType employeetype = EmployeeType.values()[rs.getInt("employeetypeid")];
+                        
+                      
+                        DepartmentDAO DepartmentDAO = daoFactory.getDepartmentDAO();
+                        Department department = DepartmentDAO.find(rs.getInt("departmentid"));
+                        
+                        
+                        
+                    
+                        ShiftDAO ShiftDAO = new ShiftDAO(daoFactory);
+                        Shift shift = ShiftDAO.find(badge);
+                        
+                        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                        LocalDateTime active = LocalDateTime.parse(rs.getString("active"), dateformat);
+                        
+                        
+                        employee = new Employee(id, firstname, middlename, lastname, active, badge, department, shift, employeetype);
+                        
+                        
 
                     }
 

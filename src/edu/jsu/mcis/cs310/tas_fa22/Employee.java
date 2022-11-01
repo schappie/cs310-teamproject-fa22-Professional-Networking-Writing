@@ -6,6 +6,7 @@
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -23,18 +24,18 @@ public class Employee {
     private final Integer id;
     private final String firstname,middlename,lastname;
     private final LocalDateTime  active;
-    private final String badgeid;
+    private final Badge badge;
     private final Shift shift;
     private final Department department;
     private final EmployeeType employeetype;
 
-    public Employee(Integer id, String firstname, String middlename, String lastname, LocalDateTime active, String badgeid, Department department, Shift shift, EmployeeType employeetype) {
+    public Employee(Integer id, String firstname, String middlename, String lastname, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeetype) {
         this.id = id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.active = active;
-        this.badgeid = badgeid;
+        this.badge = badge;
         this.shift = shift;
         this.department = department;
         this.employeetype = employeetype;
@@ -60,8 +61,8 @@ public class Employee {
         return active;
     }
 
-    public String getBadgeid() {
-        return badgeid;
+    public Badge getBadge() {
+        return badge;
     }
     public Department getDepartment(){
         return department;
@@ -73,7 +74,8 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "ID #" + id + ": " + lastname + ", " + firstname + " " + middlename + " (#" + badgeid + "), " + "Type: " + employeetype + ", Department: " + department + ", Active: " + active;
+        DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return "ID #" + id + ": " + lastname + ", " + firstname + " " + middlename + " (#" + badge.getId() + "), " + "Type: " + employeetype + ", Department: " + department.getDescription() + ", Active: " + active.format(dateformat);
     }
     
     
