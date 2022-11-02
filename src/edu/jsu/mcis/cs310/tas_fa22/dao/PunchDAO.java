@@ -82,7 +82,7 @@ public class PunchDAO {
     
 
     public Punch create(int id) {
-        Punch create = null;
+        Punch punch = null;
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -104,6 +104,7 @@ public class PunchDAO {
 
                     while (rs.next()) {
                         
+                        //int id = rs.getInt("id");
                         int terminalid = rs.getInt("terminalid");
                         String badgeid = rs.getString("badgeid");
                         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
@@ -111,11 +112,13 @@ public class PunchDAO {
                         EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
                         LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
                         
-                        //punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
+                        punch = new Punch(terminalid, badge, punchtype);
+                        
+                        
                         
                         
                         //create = new Punch(id,terminalid);
-                        create = new Punch(terminalid, badge, punchtype);
+                        //create = new Punch(terminalid, badge, punchtype);
                         
                             //terminalid = punch.getTerminalid();
                             //badge = punch.getBadge();
@@ -169,7 +172,7 @@ public class PunchDAO {
 
         }
 
-        return create;
+        return punch;
 
     }
         
