@@ -2,7 +2,9 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class PunchDAO {
 
@@ -83,6 +85,9 @@ public class PunchDAO {
     public Integer create(Punch p){
         return null;
     }
-
+    
+    public ArrayList list(Badge b, LocalDate t){
+        return null;
+    }
      
 }
