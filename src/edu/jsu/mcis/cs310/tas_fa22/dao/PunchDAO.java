@@ -2,11 +2,14 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
+    private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
 
     private final DAOFactory daoFactory;
 
@@ -80,9 +83,16 @@ public class PunchDAO {
 
     }
     
-    public Integer punchCreate(){
+    public Integer create(Punch p){
         return null;
     }
-
-     
+    
+    public ArrayList list(Badge b, LocalDate t){
+        
+        return null;
+    }
+    
+    public void adjust(Shift s){
+       
+    }
 }
