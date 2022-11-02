@@ -26,6 +26,7 @@ in the form of a simple enumeration.)
     private final Integer terminalid;
     private final Badge badge;
     private final LocalDateTime originaltimestamp;
+    private final LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype;
     
@@ -40,6 +41,7 @@ in the form of a simple enumeration.)
         this.punchtype = punchtype;
         this.adjustmenttype = null;
         this.originaltimestamp = null;
+        this.adjustedtimestamp = null;
     }
             
             
@@ -49,6 +51,7 @@ in the form of a simple enumeration.)
         this.originaltimestamp = originaltimestamp;
         this.badge = badge;
         this.punchtype = punchtype;
+        this.adjustedtimestamp = null;
     }   
       
 

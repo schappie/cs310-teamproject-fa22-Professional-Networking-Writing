@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
+    private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
 
     private final DAOFactory daoFactory;
 
@@ -87,6 +88,7 @@ public class PunchDAO {
     }
     
     public ArrayList list(Badge b, LocalDate t){
+        
         return null;
     }
     
