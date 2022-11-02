@@ -26,6 +26,7 @@ in the form of a simple enumeration.)
     private final Integer terminalid;
     private final Badge badge;
     private final LocalDateTime originaltimestamp;
+    private final LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype;
     
@@ -40,6 +41,7 @@ in the form of a simple enumeration.)
         this.punchtype = punchtype;
         this.adjustmenttype = null;
         this.originaltimestamp = null;
+        this.adjustedtimestamp = null;
     }
             
             
@@ -49,6 +51,7 @@ in the form of a simple enumeration.)
         this.originaltimestamp = originaltimestamp;
         this.badge = badge;
         this.punchtype = punchtype;
+        this.adjustedtimestamp = null;
     }   
       
 
@@ -68,12 +71,20 @@ in the form of a simple enumeration.)
         return originaltimestamp;
     }
     
+    public LocalDateTime getAdjustedTimeStamp() {
+        return adjustedtimestamp;
+    }
+    
     public EventType getPunchtype(){
         return punchtype;
     }
     
     public Badge getBadge(){
         return badge;
+    }
+    
+    public void adjust(Shift s) {
+        
     }
     
        
@@ -94,6 +105,20 @@ in the form of a simple enumeration.)
         
 
 
+    }
+    
+    public String printAdjusted() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
+        StringBuilder s = new StringBuilder();
+        
+        s.append('#');
+        s.append(badge.getId());
+        s.append(" ");
+        s.append(punchtype);
+        s.append(": ");
+        s.append(adjustedtimestamp.format(format).toUpperCase());
+        
+        return s.toString();
     }
     
     
