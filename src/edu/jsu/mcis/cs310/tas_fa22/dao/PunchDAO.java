@@ -89,5 +89,8 @@ public class PunchDAO {
     public ArrayList list(Badge b, LocalDate t){
         return null;
     }
-     
+    
+    public void adjust(Shift s){
+       
+    }
 }
