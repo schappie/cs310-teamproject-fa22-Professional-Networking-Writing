@@ -80,7 +80,7 @@ public class PunchDAO {
 
     }
     
-    public Integer punchCreate(){
+    public Integer create(Punch p){
         return null;
     }
 
