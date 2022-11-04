@@ -2,11 +2,14 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
+    private static final String QUERY_FIND_TERMINALID = "SELECT * FROM department WHERE terminalid = ?";
 
     private final DAOFactory daoFactory;
 
@@ -81,7 +84,8 @@ public class PunchDAO {
     }
     
 
-    public Punch create(int id) {
+
+    public Integer create(Punch p){
         Punch punch = null;
 
         PreparedStatement ps = null;
@@ -93,8 +97,8 @@ public class PunchDAO {
 
             if (conn.isValid(0)) {
 
-                ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, Integer.toString(id));
+                ps = conn.prepareStatement(QUERY_FIND_TERMINALID);
+                ps.setObject(1, punch);
 
                 boolean hasresults = ps.execute();
 
@@ -172,7 +176,7 @@ public class PunchDAO {
 
         }
 
-        return punch;
+        return null;
 
     }
         
@@ -184,4 +188,22 @@ public class PunchDAO {
 
 
      
+
+    
+    
+    
+    
+   // public Integer create(Punch p){
+        //punch = new Punch(terminalid, badge, punchtype);
+        //return null;
+    //}
+    
+    public ArrayList list(Badge b, LocalDate t){
+        return null;
+    }
+    
+    public void adjust(Shift s){
+       
+    }
+
 }
