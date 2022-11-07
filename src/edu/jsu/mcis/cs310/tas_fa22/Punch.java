@@ -25,8 +25,8 @@ in the form of a simple enumeration.)
     private final Integer id;
     private final Integer terminalid;
     private final Badge badge;
-    private final LocalDateTime originaltimestamp;
-    private final LocalDateTime adjustedtimestamp;
+    private final LocalDateTime originaltimestamp; //punch actually logged
+    private final LocalDateTime adjustedtimestamp; // time after adjust method
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype;
     
@@ -120,29 +120,5 @@ in the form of a simple enumeration.)
         
         return s.toString();
     }
-    
-    
-    
-    
-    
-    /*
-    
-    Objects of the Shift class will contain information about a single shift rule set 
-    (that is, the starting time, stopping time, and other parameters of a single shift).  
-    In addition to the information about a shift rule set given in the database, 
-    the Shift class should also include instance fields called "lunchduration" and "shiftduration", 
-    which should indicate the scheduled length of the lunch break and of an entire work shift 
-    (respectively), given in minutes.  
-    These values will become relevant when we begin calculating the employee's total accrued hours in later features.
-
-(Because of the large number of fields, the constructor for the Shift class should not accept these field values as individual arguments, 
-    as this would needlessly complicate the interface.  Instead, I recommend providing these values as a single collection in the form of a map, such as a HashMap.  
-    The parameter values can be stored in the map as strings and passed as a single argument to the Shift constructor; 
-    the constructor can then retrieve these values from the map and convert them to their native types.)
-    */
-
-
-
-
     
 }
