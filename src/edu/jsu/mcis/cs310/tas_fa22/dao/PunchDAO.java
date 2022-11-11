@@ -17,7 +17,7 @@ public class PunchDAO {
     private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
 
 
-   // private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
+   
     private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
@@ -120,15 +120,12 @@ public class PunchDAO {
             if (conn.isValid(0)) {
                
                 
-                
+                int key = 0;
+                int result = 0;
                 ResultSet keys;
                 ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
                 //QUERY_CREATE: "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
-                
-                
-             
-
-                
+               
 
                 boolean hasresults = ps.execute();
 
@@ -151,13 +148,13 @@ public class PunchDAO {
                         
                         
                         
-                        p = new Punch(terminalid, badge, punchtype);
+                    
                         
-                        int key = 0, result = 0;
-                        ps.setString(1, badgeid);
-                        ps.setString(2, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp));
-                        ps.setInt(3, 101);
-                        ps.setInt(4, 1);
+                        
+                        ps.setInt(1, terminalid);
+                        ps.setString(2, badgeid);
+                        ps.setString(3, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp));
+                        ps.setString(4, punchtype.toString());
                         result = ps.executeUpdate();
                         if (result == 1) {
                             keys = ps.getGeneratedKeys();
