@@ -57,7 +57,7 @@ public class PunchDAO {
                         Badge badge = badgeDAO.find(badgeid);
                         EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
                         LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
-                        
+  
                         punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
                     }
 
@@ -111,8 +111,8 @@ public class PunchDAO {
         
         
            
-
-
+        int punchID = 0;
+        // "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -157,6 +157,16 @@ public class PunchDAO {
                 //ps.setString(1, badgeid);
                 //ps.setObject(1, p);
 
+<<<<<<< HEAD
+=======
+                ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
+                // Slide 30 of 30 JavaDatabaseProgramming 
+                //ps.setString(1, terminalid);
+                //ps.setString(2, badgeid);
+                //ps.setString(3, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp.getTime()));
+                //ps.setString(4, eventtype);
+                
+>>>>>>> e040d99cb67913d902351e0ab061bb041e5461bb
 
                 boolean hasresults = ps.execute();
 
@@ -165,6 +175,7 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
+<<<<<<< HEAD
 
                         
                         //int id = rs.getInt("id");
@@ -257,6 +268,9 @@ public class PunchDAO {
 
                      
 
+=======
+                        
+>>>>>>> e040d99cb67913d902351e0ab061bb041e5461bb
                     }
 
                 }
