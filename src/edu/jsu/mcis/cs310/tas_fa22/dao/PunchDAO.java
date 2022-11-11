@@ -104,9 +104,9 @@ public class PunchDAO {
     
     public Integer create(Punch p){
         
-        
-           
-        int punchID = 0;
+        // Check the terminal ID of the new punch this will be used to check against the ID of the deginated clock
+        // termnial of the employees department. This will lead into an if state checking the two terminal ID's are equal
+        int pTerminalID = p.getTerminalid();
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -148,7 +148,7 @@ public class PunchDAO {
                         
                         
                         
-                    
+                        Punch punchCreate = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
                         
                         
                         ps.setInt(1, terminalid);
