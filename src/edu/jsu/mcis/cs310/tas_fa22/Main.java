@@ -16,6 +16,7 @@ public class Main {
         DAOFactory daoFactory = new DAOFactory("tas.jdbc");
         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
         ShiftDAO shiftDAO = daoFactory.getShiftDAO();
+        PunchDAO punchDAO = daoFactory.getPunchDAO();
         DepartmentDAO departmentDAO = daoFactory.getDepartmentDAO();
         EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
         
@@ -27,6 +28,7 @@ public class Main {
         Shift s = shiftDAO.find(3);
         Department d = departmentDAO.find(1);
         Employee e = employeeDAO.find(1);
+        Punch p = punchDAO.find(1963);
         
         
         
@@ -41,6 +43,8 @@ public class Main {
         System.err.println("Test Badge: " + b.toString());
 
         System.err.println("Test Shift: " + s.toString());
+        
+        System.err.println("Test Punch: " + p.printOriginal());
         
         System.err.println("Test Department: " + d.toString());
         

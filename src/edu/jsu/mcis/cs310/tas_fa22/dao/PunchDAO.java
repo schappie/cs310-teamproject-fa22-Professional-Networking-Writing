@@ -2,6 +2,7 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,9 +11,14 @@ public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
 
-    private static final String QUERY_FIND_TERMINALID = "SELECT * FROM department WHERE terminalid = ?";
+
+    //private static final String QUERY_FIND_TERMINALID = "SELECT * FROM department WHERE terminalid = ?";
 
     private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
+
+
+   // private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
+    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
 
@@ -88,20 +94,69 @@ public class PunchDAO {
     
 
 
+/*
     public Integer create(Punch p){
         Punch punch = null;
 
         PreparedStatement ps = null;
         ResultSet rs = null;
+      */  
+
+    
+    
+    
+    
+    
+    public Integer create(Punch p){
         
+        
+           
+
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+
         try {
 
-            Connection conn = daoFactory.getConnection();
+            //Connection conn = daoFactory.getConnection();
+            Connection conn = daoFactory.getConnection(/*server, username, password*/);
 
             if (conn.isValid(0)) {
+               
+                
+                //int key = 0, result = 0;
+                //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                //Connection conn = daoFactory.getConnection(/*server, username, password);
+                ResultSet keys;
+                String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtypeid) VALUES (?,?,?,?)";
+                ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                //ps.setString(1, badgeid);
+                //ps.setString(2, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp.getTime()));
+                //ps.setInt(3, 101);
+                //ps.setInt(4, 1);
+                //result = ps.executeUpdate();
+                //if (result == 1) {
+                    //keys = ps.getGeneratedKeys();
+                    //if (keys.next()) { key = keys.getInt(1); }
+               // }
+                
+                
+                
+                //int key = 0, result = 0;
+                //Class.forName(QUERY_CREATE).newInstance();
+                //String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtype) VALUES (?, ?, ?, ?";
+                //ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                //ps.setString(1, badgeid);
 
-                ps = conn.prepareStatement(QUERY_FIND_TERMINALID);
-                ps.setObject(1, punch);
+
+                
+                
+
+                //ps = conn.prepareStatement(QUERY_CREATE);
+                //ps.setString(1, badgeid);
+                //ps.setObject(1, p);
+
 
                 boolean hasresults = ps.execute();
 
@@ -110,6 +165,7 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
+
                         
                         //int id = rs.getInt("id");
                         int terminalid = rs.getInt("terminalid");
@@ -119,10 +175,55 @@ public class PunchDAO {
                         EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
                         LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
                         
-                        punch = new Punch(terminalid, badge, punchtype);
-                        punch.getTerminalid();
-                        punch.getBadge();
-                        punch.getPunchtype();
+                        
+                        
+                        
+                        p = new Punch(terminalid, badge, punchtype);
+                        
+                        int key = 0, result = 0;
+                        //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+                        //Connection conn = daoFactory.getConnection(/*server, username, password*/);
+                        //ResultSet keys;
+                        //String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtypeid) VALUES (?,?,?,?)";
+                        //PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+                        ps.setString(1, badgeid);
+                        ps.setString(2, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp));
+                        ps.setInt(3, 101);
+                        ps.setInt(4, 1);
+                        result = ps.executeUpdate();
+                        if (result == 1) {
+                            keys = ps.getGeneratedKeys();
+                            if (keys.next()) { key = keys.getInt(1); }
+                }
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        //p.getTerminalid();
+                        //p.getBadge();
+                        //p.getPunchtype();
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         
                         
                         
@@ -153,6 +254,9 @@ public class PunchDAO {
                             //punchtype = punch.getPunchtype();
                             
                             
+
+                     
+
                     }
 
                 }
