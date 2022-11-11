@@ -94,14 +94,9 @@ public class PunchDAO {
     
 
 
-/*
-    public Integer create(Punch p){
-        Punch punch = null;
 
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-      */  
-
+    
+    
     
     
     
@@ -112,61 +107,28 @@ public class PunchDAO {
         
            
         int punchID = 0;
-        // "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
+        
         PreparedStatement ps = null;
         ResultSet rs = null;
 
 
         try {
 
-            //Connection conn = daoFactory.getConnection();
-            Connection conn = daoFactory.getConnection(/*server, username, password*/);
+            Connection conn = daoFactory.getConnection();
+           
 
             if (conn.isValid(0)) {
                
                 
-                //int key = 0, result = 0;
-                //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-                //Connection conn = daoFactory.getConnection(/*server, username, password);
+                
                 ResultSet keys;
-                String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtypeid) VALUES (?,?,?,?)";
-                ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-                //ps.setString(1, badgeid);
-                //ps.setString(2, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp.getTime()));
-                //ps.setInt(3, 101);
-                //ps.setInt(4, 1);
-                //result = ps.executeUpdate();
-                //if (result == 1) {
-                    //keys = ps.getGeneratedKeys();
-                    //if (keys.next()) { key = keys.getInt(1); }
-               // }
-                
-                
-                
-                //int key = 0, result = 0;
-                //Class.forName(QUERY_CREATE).newInstance();
-                //String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtype) VALUES (?, ?, ?, ?";
-                //ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-                //ps.setString(1, badgeid);
-
-
-                
-                
-
-                //ps = conn.prepareStatement(QUERY_CREATE);
-                //ps.setString(1, badgeid);
-                //ps.setObject(1, p);
-
-<<<<<<< HEAD
-=======
                 ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
-                // Slide 30 of 30 JavaDatabaseProgramming 
-                //ps.setString(1, terminalid);
-                //ps.setString(2, badgeid);
-                //ps.setString(3, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp.getTime()));
-                //ps.setString(4, eventtype);
+                //QUERY_CREATE: "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
                 
->>>>>>> e040d99cb67913d902351e0ab061bb041e5461bb
+                
+             
+
+                
 
                 boolean hasresults = ps.execute();
 
@@ -175,10 +137,10 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-<<<<<<< HEAD
+
 
                         
-                        //int id = rs.getInt("id");
+                        int id = rs.getInt("id");
                         int terminalid = rs.getInt("terminalid");
                         String badgeid = rs.getString("badgeid");
                         BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
@@ -192,11 +154,6 @@ public class PunchDAO {
                         p = new Punch(terminalid, badge, punchtype);
                         
                         int key = 0, result = 0;
-                        //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-                        //Connection conn = daoFactory.getConnection(/*server, username, password*/);
-                        //ResultSet keys;
-                        //String sql = "INSERT INTO event (badgeid, originaltimestamp, terminalid, eventtypeid) VALUES (?,?,?,?)";
-                        //PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                         ps.setString(1, badgeid);
                         ps.setString(2, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp));
                         ps.setInt(3, 101);
@@ -205,72 +162,8 @@ public class PunchDAO {
                         if (result == 1) {
                             keys = ps.getGeneratedKeys();
                             if (keys.next()) { key = keys.getInt(1); }
-                }
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        //p.getTerminalid();
-                        //p.getBadge();
-                        //p.getPunchtype();
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        //create = new Punch(id,terminalid);
-                        //create = new Punch(terminalid, badge, punchtype);
-                        
-                            //terminalid = punch.getTerminalid();
-                            //badge = punch.getBadge();
-                            //punchtype = punch.getPunchtype();
-                        
-                        
+                        }
 
-
-
-
-
-
-                        
-                        
-                        
-                        //punch = new Punch(terminalid,badge, punchtype);
-                             
-                            //id = punch.getId();
-                            //terminalid = punch.getTerminalid();
-                            //badge = punch.getBadge();
-                            //originaltimestamp = punch.getOriginaltimestamp();
-                            //punchtype = punch.getPunchtype();
-                            
-                            
-
-                     
-
-=======
-                        
->>>>>>> e040d99cb67913d902351e0ab061bb041e5461bb
                     }
 
                 }
@@ -300,27 +193,12 @@ public class PunchDAO {
 
         }
 
-        return null;
+        return punchID;
 
     }
         
     
 
-    //public Integer punchCreate(){
-        //return null;
-    //}
-
-
-     
-
-    
-    
-    
-    
-   // public Integer create(Punch p){
-        //punch = new Punch(terminalid, badge, punchtype);
-        //return null;
-    //}
     
     public ArrayList list(Badge b, LocalDate t){
         
