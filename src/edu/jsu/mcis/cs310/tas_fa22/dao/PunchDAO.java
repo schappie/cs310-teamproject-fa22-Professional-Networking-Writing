@@ -110,8 +110,13 @@ public class PunchDAO {
         
         PreparedStatement ps = null;
         ResultSet rs = null;
-
-
+        
+        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
+        Employee employee = employeeDAO.find(p.getBadge());
+        
+        int employeeTerminalID = employee.getDepartment().getTerminalid();
+         
+        
         try {
 
             Connection conn = daoFactory.getConnection();
@@ -121,15 +126,20 @@ public class PunchDAO {
                
                 
                 int key = 0;
-                int result = 0;
+                
                 ResultSet keys;
                 ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, p.getTerminalid());
+                ps.setString(2, p.getBadge().getId());
+                ps.setString(3, p.getOriginaltimestamp().toString());
+                ps.setInt(4, p.getPunchtype().ordinal());
+                
                 //QUERY_CREATE: "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
                
+                int result = ps.executeUpdate();
+               
 
-                boolean hasresults = ps.execute();
-
-                if (hasresults) {
+                if (result == 1) {
 
                     rs = ps.getResultSet();
 
@@ -137,25 +147,7 @@ public class PunchDAO {
 
 
                         
-                        int id = rs.getInt("id");
-                        int terminalid = rs.getInt("terminalid");
-                        String badgeid = rs.getString("badgeid");
-                        BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
-                        Badge badge = badgeDAO.find(badgeid);
-                        EventType punchtype = EventType.values()[rs.getInt("eventtypeid")];
-                        LocalDateTime originaltimestamp = rs.getTimestamp("timestamp").toLocalDateTime();
-                        
-                        
-                        
-                        
-                        Punch punchCreate = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
-                        
-                        
-                        ps.setInt(1, terminalid);
-                        ps.setString(2, badgeid);
-                        ps.setString(3, (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(originaltimestamp));
-                        ps.setString(4, punchtype.toString());
-                        result = ps.executeUpdate();
+                       
                         if (result == 1) {
                             keys = ps.getGeneratedKeys();
                             if (keys.next()) { key = keys.getInt(1); }
@@ -190,7 +182,7 @@ public class PunchDAO {
 
         }
 
-        return punchID;
+        return p.getId();
 
     }
         
