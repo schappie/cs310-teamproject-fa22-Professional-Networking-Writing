@@ -197,10 +197,10 @@ public class PunchDAO {
     
 
     
-   public Punch ArrayList(Badge b, Timestamp ts) {
+   public ArrayList<Punch> List(Badge b, LocalDate ts) {
 
         Punch punch = null;
-        ArrayList<Punch> punches = new ArrayList<>();
+        
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -211,6 +211,8 @@ public class PunchDAO {
 
             if (conn.isValid(0)) {
 
+                ps = conn.prepareStatement(QUERY_LIST);
+                
                 
 
                 boolean hasresults = ps.execute();
@@ -220,7 +222,7 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-                        
+                        ArrayList<Punch> List = new ArrayList<>();
                     }
 
                 }
@@ -257,5 +259,9 @@ public class PunchDAO {
     public void adjust(Shift s){
        
     }
+
+    
+
+    
 
 }
