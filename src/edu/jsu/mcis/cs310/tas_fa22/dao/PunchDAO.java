@@ -4,13 +4,14 @@ import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
-    private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
-    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtypeid) VALUES(?, ?, ?, ?)";
+    private static final String QUERY_LIST = "SELECT *, DATE(`timestamp`) AS ts FROM event WHERE badgeid = ? HAVING ts = ? ORDER BY `timestamp`";
+    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, `timestamp`, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
 
@@ -30,6 +31,8 @@ public class PunchDAO {
         try {
 
             Connection conn = daoFactory.getConnection();
+            
+            
 
             if (conn.isValid(0)) {
 
@@ -171,13 +174,12 @@ public class PunchDAO {
     
     
     
-   public Punch list(Badge b, LocalDate ts) {
+   public ArrayList<Punch> list(Badge b, LocalDate ts) {
 
-        //public ArrayList<Punch> List(Badge b, LocalDate ts) {
-
-
-        Punch punch = null;
+        ArrayList<Punch> punchlist = new ArrayList<>();
         
+        BadgeDAO badgeDAO = daoFactory.getBadgeDAO();
+
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -185,12 +187,14 @@ public class PunchDAO {
         try {
 
             Connection conn = daoFactory.getConnection();
+            
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_LIST);
                 ps.setString(1, b.getId());
-                ps.setTimestamp(2, p)
+                ps.setDate(2, java.sql.Date.valueOf(ts));
                 
 
                 boolean hasresults = ps.execute();
@@ -200,8 +204,16 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-                            
-                                    ArrayList<Punch> List = new ArrayList<>();
+                        
+                        int id = rs.getInt("id");
+                        int terminalid = rs.getInt("terminalid");
+                        Badge badge = badgeDAO.find(rs.getString("badgeid"));
+                        EventType eventtype = EventType.values()[rs.getInt("eventtypeid")];
+                        LocalDateTime originaltimestamp = LocalDateTime.parse(rs.getString("timestamp"), format);
+                        
+                        Punch p = new Punch(id, terminalid, badge, originaltimestamp, eventtype);
+                        
+                        punchlist.add(p);
 
                     }
 
@@ -232,7 +244,7 @@ public class PunchDAO {
 
         }
 
-        return ;
+        return punchlist;
 
     }
     
