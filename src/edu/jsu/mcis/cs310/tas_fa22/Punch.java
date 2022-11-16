@@ -40,7 +40,7 @@ in the form of a simple enumeration.)
         this.badge = badge;
         this.punchtype = punchtype;
         this.adjustmenttype = null;
-        this.originaltimestamp = null;
+        this.originaltimestamp = LocalDateTime.now();
         this.adjustedtimestamp = null;
     }
             

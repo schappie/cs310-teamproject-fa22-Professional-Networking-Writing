@@ -2,16 +2,14 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
-
     private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
-
-   
     private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
@@ -129,54 +127,57 @@ public class PunchDAO {
                     int result = ps.executeUpdate();
                
 
-                if (result == 1) {
+                    if (result == 1) {
 
-                    rs = ps.getGeneratedKeys();
+                        rs = ps.getGeneratedKeys();
 
-                    if (rs.next()) {
-                            newPunchID = rs.getInt(1);
-                        
+                        if (rs.next()) {
+                                newPunchID = rs.getInt(1);
+
+
+                        }
 
                     }
-
                 }
+            
 
-            }
+            } catch (SQLException e) {
 
-        } catch (SQLException e) {
+                throw new DAOException(e.getMessage());
 
-            throw new DAOException(e.getMessage());
+            } finally {
 
-        } finally {
-
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
                 }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
                 }
             }
         }
+        return newPunchID;  
     }
-    return newPunchID;  
-}
 
-    
+
     
     
     
     
    public Punch ArrayList(Badge b, Timestamp ts) {
 
+        //public ArrayList<Punch> List(Badge b, LocalDate ts) {
+
+
         Punch punch = null;
-        ArrayList<Punch> punches = new ArrayList<>();
+        
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -187,6 +188,8 @@ public class PunchDAO {
 
             if (conn.isValid(0)) {
 
+                ps = conn.prepareStatement(QUERY_LIST);
+                
                 
 
                 boolean hasresults = ps.execute();
@@ -196,14 +199,9 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
+                            
+                                    ArrayList<Punch> List = new ArrayList<>();
+
                     }
 
                 }
@@ -240,5 +238,9 @@ public class PunchDAO {
     public void adjust(Shift s){
        
     }
+
+    
+
+    
 
 }
