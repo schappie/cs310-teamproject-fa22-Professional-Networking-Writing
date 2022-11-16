@@ -2,7 +2,6 @@ package edu.jsu.mcis.cs310.tas_fa22.dao;
 
 import edu.jsu.mcis.cs310.tas_fa22.*;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,15 +9,8 @@ import java.util.ArrayList;
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
-
-
-    //private static final String QUERY_FIND_TERMINALID = "SELECT * FROM department WHERE terminalid = ?";
-
     private static final String QUERY_LIST = "SELECT * FROM event WHERE badgeid = ? AND timestamp = ?";
-
-
-   
-    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)";
+    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
 
@@ -103,11 +95,7 @@ public class PunchDAO {
     
     
     public Integer create(Punch p){
-        
-        // Check the terminal ID of the new punch this will be used to check against the ID of the deginated clock
-        // termnial of the employees department. This will lead into an if state checking the two terminal ID's are equal
-        int pTerminalID = p.getTerminalid();
-        
+        int newPunchID = 0;
         PreparedStatement ps = null;
         ResultSet rs = null;
         
@@ -115,81 +103,78 @@ public class PunchDAO {
         Employee employee = employeeDAO.find(p.getBadge());
         
         int employeeTerminalID = employee.getDepartment().getTerminalid();
-         
+        // Check the terminal ID of the new punch this will be used to check against the ID of the deginated clock
+        // termnial of the employees department. This will lead into an if state checking the two terminal ID's are equal
+        if(employeeTerminalID == p.getTerminalid()){
         
-        try {
+        
+            try {
 
-            Connection conn = daoFactory.getConnection();
+                Connection conn = daoFactory.getConnection();
            
 
-            if (conn.isValid(0)) {
+                if (conn.isValid(0)) {
                
-                
-                int key = 0;
-                
-                ResultSet keys;
-                ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, p.getTerminalid());
-                ps.setString(2, p.getBadge().getId());
-                ps.setString(3, p.getOriginaltimestamp().toString());
-                ps.setInt(4, p.getPunchtype().ordinal());
-                
+             
                 //QUERY_CREATE: "INSERT INTO event (terminalid, badgeid, timestamp, eventtype) VALUES(?, ?, ?, ?)"
+                    ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, p.getTerminalid());
+                    ps.setString(2, p.getBadge().getId());
+                    ps.setString(3, p.getOriginaltimestamp().toString());
+                    ps.setInt(4, p.getPunchtype().ordinal());
+                
+                             
+                    int result = ps.executeUpdate();
                
-                int result = ps.executeUpdate();
-               
 
-                if (result == 1) {
+                    if (result == 1) {
 
-                    rs = ps.getResultSet();
+                        rs = ps.getGeneratedKeys();
 
-                    while (rs.next()) {
+                        if (rs.next()) {
+                                newPunchID = rs.getInt(1);
 
 
-                        
-                       
-                        if (result == 1) {
-                            keys = ps.getGeneratedKeys();
-                            if (keys.next()) { key = keys.getInt(1); }
                         }
 
                     }
-
                 }
+            
 
-            }
+            } catch (SQLException e) {
 
-        } catch (SQLException e) {
+                throw new DAOException(e.getMessage());
 
-            throw new DAOException(e.getMessage());
+            } finally {
 
-        } finally {
-
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
+                if (rs != null) {
+                    try {
+                        rs.close();
+                    } catch (SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
+                }
+                if (ps != null) {
+                    try {
+                        ps.close();
+                    } catch (SQLException e) {
+                        throw new DAOException(e.getMessage());
+                    }
                 }
             }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
-                }
-            }
-
         }
-
-        return p.getId();
-
+        return newPunchID;  
     }
-        
-    
+
 
     
-   public Punch list(Badge b, LocalDate ts) {
+    
+    
+    
+   public Punch ArrayList(Badge b, Timestamp ts) {
+
+        //public ArrayList<Punch> List(Badge b, LocalDate ts) {
+
 
         Punch punch = null;
         
@@ -215,7 +200,9 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
-                        
+                            
+                                    ArrayList<Punch> List = new ArrayList<>();
+
                     }
 
                 }
