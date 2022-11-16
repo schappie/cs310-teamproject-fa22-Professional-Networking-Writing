@@ -120,7 +120,7 @@ public class PunchDAO {
                     ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
                     ps.setInt(1, p.getTerminalid());
                     ps.setString(2, p.getBadge().getId());
-                    ps.setString(3, p.getOriginaltimestamp().toString());
+                    ps.setTimestamp(3, java.sql.Timestamp.valueOf(p.getOriginaltimestamp()));
                     ps.setInt(4, p.getPunchtype().ordinal());
                 
                              
@@ -171,7 +171,7 @@ public class PunchDAO {
     
     
     
-   public Punch ArrayList(Badge b, Timestamp ts) {
+   public Punch list(Badge b, LocalDate ts) {
 
         //public ArrayList<Punch> List(Badge b, LocalDate ts) {
 
