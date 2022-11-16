@@ -189,7 +189,8 @@ public class PunchDAO {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_LIST);
-                
+                ps.setString(1, b.getId());
+                ps.setTimestamp(2, p)
                 
 
                 boolean hasresults = ps.execute();
@@ -231,7 +232,7 @@ public class PunchDAO {
 
         }
 
-        return punch;
+        return ;
 
     }
     
