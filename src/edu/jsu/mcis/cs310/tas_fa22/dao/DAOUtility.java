@@ -16,4 +16,12 @@ import org.json.simple.*;
  */
 public final class DAOUtility {
 
+    
+    public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift){
+        
+        
+        
+        return 0;
+        
+    }
 }
