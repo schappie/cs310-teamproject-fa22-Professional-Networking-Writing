@@ -91,7 +91,20 @@ in the form of a simple enumeration.)
 
     
     public void adjust(Shift s) {
+        PunchAdjustmentType SHIFT_START = adjustmenttype.SHIFT_START;
+        PunchAdjustmentType SHIFT_STOP = adjustmenttype.SHIFT_STOP;
+        PunchAdjustmentType SHIFT_DOCK = adjustmenttype.SHIFT_DOCK;
+        PunchAdjustmentType LUNCH_START = adjustmenttype.LUNCH_START;
+        PunchAdjustmentType LUNCH_STOP = adjustmenttype.LUNCH_STOP;
+        PunchAdjustmentType NONE = adjustmenttype.NONE;
+        PunchAdjustmentType INTERVAL_ROUND = adjustmenttype.INTERVAL_ROUND;
         
+        if(){
+            return originaltimestamp;
+        }
+        else(INTERVAL_ROUND){
+        return adjustedtimestamp;
+    }
     }
     
        
