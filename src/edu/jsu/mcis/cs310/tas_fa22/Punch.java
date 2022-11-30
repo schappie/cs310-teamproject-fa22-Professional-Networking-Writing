@@ -99,12 +99,7 @@ in the form of a simple enumeration.)
         PunchAdjustmentType NONE = adjustmenttype.NONE;
         PunchAdjustmentType INTERVAL_ROUND = adjustmenttype.INTERVAL_ROUND;
         
-        if(){
-            return originaltimestamp;
-        }
-        else(INTERVAL_ROUND){
-        return adjustedtimestamp;
-    }
+        
     }
     
        
