@@ -1,7 +1,7 @@
 
 package edu.jsu.mcis.cs310.tas_fa22;
 
-import java.time.LocalDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 public class Punch {
@@ -18,7 +18,7 @@ these will become important in later features.
 (The PunchAdjustmentType data type has already been provided for you in the initial team repository, 
 in the form of a simple enumeration.)
     
-    
+    // originalstimestamp.toLocalTime().isAfter(s.lunchstop)
     
     */
     
@@ -73,11 +73,11 @@ in the form of a simple enumeration.)
     public LocalDateTime getOriginaltimestamp() {
         return originaltimestamp;
     }
-
-
     
+    private boolean isOnInterval(int minutes, int interval){
+        return 0 == (minutes % interval);
+    }
 
-    
     public LocalDateTime getAdjustedTimeStamp() {
         return adjustedtimestamp;
     }
@@ -87,28 +87,28 @@ in the form of a simple enumeration.)
         return punchtype;
     }
     
-    
-
-    
     public void adjust(Shift s) {
-        PunchAdjustmentType SHIFT_START = adjustmenttype.SHIFT_START;
-        PunchAdjustmentType SHIFT_STOP = adjustmenttype.SHIFT_STOP;
-        PunchAdjustmentType SHIFT_DOCK = adjustmenttype.SHIFT_DOCK;
-        PunchAdjustmentType LUNCH_START = adjustmenttype.LUNCH_START;
-        PunchAdjustmentType LUNCH_STOP = adjustmenttype.LUNCH_STOP;
-        PunchAdjustmentType NONE = adjustmenttype.NONE;
-        PunchAdjustmentType INTERVAL_ROUND = adjustmenttype.INTERVAL_ROUND;
-        
-        if(){
-            return originaltimestamp;
+        //adjustedtimestamp = null;
+       
+        if (originaltimestamp.getDayOfWeek() == DayOfWeek.SATURDAY|| originaltimestamp.getDayOfWeek() == DayOfWeek.SUNDAY ) {
+            if (isOnInterval(originaltimestamp.getMinute(), s.getRoundinterval())) {
+                adjustmenttype = PunchAdjustmentType.NONE;
+            }
+            
+            else adjustmenttype = PunchAdjustmentType.INTERVAL_ROUND;  
         }
-        else(INTERVAL_ROUND){       
-        return adjustedtimestamp;
-    }
+        
+        //else if | grace period
+        
+        else {
+            // is punch out
+                /* Punch out of lunch? */
+            
+            // else, is punch in
+            /* ... */
+        }
     }
     
-       
-
     public String printOriginal() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("EEE MM/dd/yyyy HH:mm:ss");
         StringBuilder s = new StringBuilder();

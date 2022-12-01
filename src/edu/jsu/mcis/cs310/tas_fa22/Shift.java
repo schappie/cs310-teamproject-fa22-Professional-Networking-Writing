@@ -15,8 +15,6 @@ import java.time.temporal.ChronoUnit;
  */
 
 public class Shift {
-    
-    
    
     private final String description;
     private final Integer id, roundinterval, graceperiod, dockpenalty, lunchthreshold, lunchDuration, shiftDuration;
