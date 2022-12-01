@@ -102,7 +102,7 @@ in the form of a simple enumeration.)
         if(){
             return originaltimestamp;
         }
-        else(INTERVAL_ROUND){
+        else(INTERVAL_ROUND){       
         return adjustedtimestamp;
     }
     }

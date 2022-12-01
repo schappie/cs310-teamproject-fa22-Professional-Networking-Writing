@@ -11,6 +11,7 @@ public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
     private static final String QUERY_LIST = "SELECT *, DATE(`timestamp`) AS ts FROM event WHERE badgeid = ? HAVING ts = ? ORDER BY `timestamp`";
+    private static final String QUERY_LIST2 = "SELECT *, DATE(`timestamp`) AS ts FROM event WHERE badgeid = ? HAVING ts = ? ORDER BY `timestamp1`"
     private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, `timestamp`, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
@@ -251,9 +252,16 @@ public class PunchDAO {
     public void adjust(Shift s){
        
     }
-
     
+    public ArrayList<Punch> list(Badge b, LocalDate begin, LocalDate end) {
 
-    
+        ArrayList<Punch> punchlistRange = new ArrayList<>();
+        
+           // Use the other find method to iterate through the local dates passed through
+           // the method 
+
+        return punchlistRange;
+
+    }
 
 }
