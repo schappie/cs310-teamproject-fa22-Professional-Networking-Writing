@@ -29,6 +29,7 @@ public class Main {
         Department d = departmentDAO.find(1);
         Employee e = employeeDAO.find(1);
         Punch p = punchDAO.find(1963);
+        p.adjust(s);
         
         
         
