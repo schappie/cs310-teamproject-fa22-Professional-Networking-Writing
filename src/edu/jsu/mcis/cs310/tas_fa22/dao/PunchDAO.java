@@ -6,12 +6,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
     private static final String QUERY_LIST = "SELECT *, DATE(`timestamp`) AS ts FROM event WHERE badgeid = ? HAVING ts = ? ORDER BY `timestamp`";
-    private static final String QUERY_LIST2 = "SELECT *, DATE(`timestamp`) AS ts FROM event WHERE badgeid = ? HAVING ts = ? ORDER BY `timestamp1`"
     private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, `timestamp`, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
@@ -254,12 +254,23 @@ public class PunchDAO {
     }
     
     public ArrayList<Punch> list(Badge b, LocalDate begin, LocalDate end) {
-
+        
+        
         ArrayList<Punch> punchlistRange = new ArrayList<>();
+        PunchDAO punchDAO = new PunchDAO(daoFactory);
         
            // Use the other find method to iterate through the local dates passed through
-           // the method 
-
+           // the method
+           // Snellen mentioned an addAll() for the multiple ArrayList of punches for the range of days into one singular ArrayList
+           
+           // List of LocalDates from the begin date until the end plus 1 day as to include the end date
+        List<LocalDate> datesinrange = (List<LocalDate>) begin.datesUntil(end.plusDays(1));
+        
+           // For each LocalDate within the list of LocalDates in the range of beginning to end
+        for(LocalDate date : datesinrange){
+            punchlistRange.addAll(punchDAO.list(b, date));
+        }
+            
         return punchlistRange;
 
     }
