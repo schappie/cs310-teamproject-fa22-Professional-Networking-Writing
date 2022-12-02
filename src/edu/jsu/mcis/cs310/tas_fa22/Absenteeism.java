@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package edu.jsu.mcis.cs310.tas_fa22;
 
 import java.time.LocalDate;
@@ -37,12 +34,12 @@ public class Absenteeism {
 
     @Override
     public String toString() {
-        return "Absenteeism{" + "employee=" + employee + ", paystart=" + paystart + ", percentage=" + percentage + '}';
+        return employee.getBadge() + " (Pay Period Starting " + paystart + "): " + percentage;
     }
-    
-    
-
-     
-    
-    
+      
 }
+
+/*
+Test Class Format (Sawyer)
+#F1EE0555 (Pay Period Starting 08-05-2018): -20.00%
+*/
