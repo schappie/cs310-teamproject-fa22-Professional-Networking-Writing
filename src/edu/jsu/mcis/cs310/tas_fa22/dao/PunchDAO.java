@@ -259,14 +259,25 @@ public class PunchDAO {
         ArrayList<Punch> punchlistRange = new ArrayList<>();
         PunchDAO punchDAO = new PunchDAO(daoFactory);
         
+        
            // Use the other find method to iterate through the local dates passed through
            // the method
            // Snellen mentioned an addAll() for the multiple ArrayList of punches for the range of days into one singular ArrayList
            
            // List of LocalDates from the begin date until the end plus 1 day as to include the end date
-        List<LocalDate> datesinrange = (List<LocalDate>) begin.datesUntil(end.plusDays(1));
+        ArrayList<LocalDate> datesinrange = new ArrayList<>();
         
-           // For each LocalDate within the list of LocalDates in the range of beginning to end
+        // we should create a while loop that will check to see if the date is before or equal
+        // to the end date and within the loop at that date to the list
+        LocalDate dateWhile = begin;
+        
+        while(dateWhile.isEqual(end) || dateWhile.isBefore(end)){
+           
+            datesinrange.add(dateWhile);
+            dateWhile.plusDays(1);
+              
+        }
+        // For each LocalDate within the list of LocalDates add it to the returned arraylist
         for(LocalDate date : datesinrange){
             punchlistRange.addAll(punchDAO.list(b, date));
         }
