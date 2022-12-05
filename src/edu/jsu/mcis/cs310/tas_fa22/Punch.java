@@ -100,13 +100,10 @@ in the form of a simple enumeration.)
         
         //else if | grace period
         
-        else {
-            // is punch out
-                /* Punch out of lunch? */
-            
-            // else, is punch in
-            /* ... */
-        }
+        // else if (false) adjustmenttype = PunchAdjustmentType.grace
+        // create new local date times for each line on the specific localdate of a punch
+        // ell
+        //}
     }
     
     public String printOriginal() {
